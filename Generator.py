@@ -3,10 +3,18 @@ import torch
 from huggingface_hub import login
 from config import get_config
 from transformers import BitsAndBytesConfig
+import os
 
+
+
+# Get the API token from the environment variable
+api_token = os.environ.get("HUGGINGFACE_API_TOKEN")
+
+if api_token is None:
+    raise ValueError("Hugging Face API token not found in environment variables.")
 
 # Login to Hugging Face Hub
-login("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")  # Replace with your Hugging Face token
+login(api_token)
 
 
 """ Wrapping the model in a class """
